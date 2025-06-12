@@ -2,7 +2,7 @@ name: API Test with Node.js
 
 on:
   push:
-    branches: [ike-test]
+    branches: [ike-test, main]
   workflow_dispatch:
 
 jobs:
