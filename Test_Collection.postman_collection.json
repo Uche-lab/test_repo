@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "ef3eb02c-3fc5-41a9-8a2d-96472cb47bdd",
+		"name": "Test_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45787434",
+		"_collection_link": "https://uche-71426.postman.co/workspace/3c5bd416-8f4b-40e2-87d1-77fc6cc3dbe1/collection/45787434-ef3eb02c-3fc5-41a9-8a2d-96472cb47bdd?action=share&source=collection_link&creator=45787434"
+	},
+	"item": [
+		{
+			"name": "Get Objects",
+			"item": [
+				{
+					"name": "Get Objects - List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"// pm.collectionVariables.set(\"user_password\", response.password);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contains user info\", function () {",
+									"    pm.expect(response).to.be.an(\"array\");",
+									"//     pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");",
+									"//     pm.expect(response).to.have.property(\"password\").that.is.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const base_url = \"https://api.restful-api.dev\"",
+									"pm.collectionVariables.set(\"baseurl\", base_url);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/objects",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Object - Single User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"// pm.collectionVariables.set(\"user_password\", response.password);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contains user info\", function () {",
+									"    pm.expect(response).to.be.an(\"object\");",
+									"    pm.expect(response).to.have.property(\"id\").that.is.a(\"string\");",
+									"    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\");",
+									"    pm.expect(response.data).to.be.an(\"object\")",
+									"//     pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");",
+									"//     pm.expect(response).to.have.property(\"password\").that.is.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/objects/7",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"objects",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Object - Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const response = pm.response.json();",
+									"",
+									"// pm.collectionVariables.set(\"user_password\", response.password);",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/objects/90",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"objects",
+								"90"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add an Object",
+			"item": [
+				{
+					"name": "Add an Object",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"// pm.collectionVariables.set(\"id\", \"id\");",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contains user info\", function () {",
+									"    pm.expect(response).to.be.an(\"object\");",
+									"    pm.expect(response).to.have.property(\"id\").that.is.a(\"string\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Apple MacBook Pro 16\",\n    \"data\": {\n        \"year\": 2019,\n        \"price\": 1849.99,\n        \"CPU model\": \"Intel Core i9\",\n        \"Hard disk size\": \"1 TB\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/objects",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"objects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "https://reqres.in",
+			"type": "default"
+		},
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
