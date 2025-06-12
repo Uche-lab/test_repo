@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Postman tests
         run: |
-          newman run "https://api.getpostman.com/collections/45787434-ef3eb02c-3fc5-41a9?apikey=${{ secrets.POSTMAN_API_KEY }}" \
+          newman run "https://api.getpostman.com/collections/45787434-ef3eb02c-3fc5-41a9-8a2d-96472cb47bdd?apikey=${{ secrets.POSTMAN_API_KEY }}" \
             --reporters cli,json \
             --reporter-json-export newman-report.json
 
