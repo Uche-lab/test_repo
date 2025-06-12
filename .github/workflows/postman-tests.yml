@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Postman tests
         run: |
-          newman run ./test-collection.json 
+          newman run .github/workflows/test-collection.json \ 
             --reporters cli,json \
             --reporter-json-export newman-report.json
 
